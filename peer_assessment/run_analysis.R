@@ -29,12 +29,12 @@ colnames(data) <- c(as.vector(features[meanStdCols, 2]), "Activity", "Subject")
 names(data) <- gsub("\\(\\)", "", names(data))
 names(data) <- tolower(names(data))
 
-write.table(data, "tidy_data.txt") # write out the 1st dataset
+write.table(data, "tidy_data.txt", row.names = FALSE) # write out the 1st dataset
 
 # 5. From the data set in step 4, creates a second, independent tidy data 
 #    set with the average of each variable for each activity and each subject.
 
 aggregatedData <- aggregate(data[, 1:66], by=list(activity = data$activity, subject = data$subject), mean)
-write.table(data, "tidy_data_var_means.txt")
+write.table(aggregatedData, "tidy_data_var_means.txt", row.names = FALSE)
 
 
